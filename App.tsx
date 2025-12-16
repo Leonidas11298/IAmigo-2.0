@@ -1,23 +1,24 @@
 import React from 'react';
-import HeroSection from './components/HeroSection';
-import TechStack from './components/TechStack';
-import BentoGrid from './components/BentoGrid';
-import DashboardPreview from './components/DashboardPreview';
-import Footer from './components/Footer';
-import Navbar from './components/Navbar';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LandingPage from './components/LandingPage';
+import Terms from './components/Terms';
+import ChatWidget from './components/ChatWidget';
+import DevModeToggle from './components/DevModeToggle';
 
 const App: React.FC = () => {
   return (
-    <main className="min-h-screen bg-zinc-950 text-white selection:bg-pink-500/30">
-      <Navbar />
-      <HeroSection />
-      <TechStack />
-      <div className="py-20 px-4 md:px-8 max-w-7xl mx-auto space-y-32">
-        <BentoGrid />
-        <DashboardPreview />
-      </div>
-      <Footer />
-    </main>
+    <Router>
+      <main className="min-h-screen bg-background text-foreground selection:bg-primary/30 font-sans">
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/conditions" element={<Terms />} />
+        </Routes>
+
+        {/* Floating Widgets (Global) */}
+        <ChatWidget />
+        <DevModeToggle />
+      </main>
+    </Router>
   );
 };
 
